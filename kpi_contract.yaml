@@ -1,0 +1,129 @@
+kpis:
+  Revenue:
+    definition: "SUM(units * unit_price * (1 - discount))"
+    source_tables:
+      - sales_transactions
+    grain: daily
+    drivers:
+      - price
+      - volume
+      - mix
+      - marketing_spend
+      - seasonality
+      - competitor_activity
+    materiality_threshold:
+      statistical_z: 2.0
+      dollar_impact: 500
+    owner_persona: CEO
+    access_restriction: all_regions
+    lineage: "Aggregated from line-item transaction records in sales_transactions."
+
+  Units_Sold:
+    definition: "SUM(units)"
+    source_tables:
+      - sales_transactions
+    grain: daily
+    drivers:
+      - volume
+      - channel_mix
+      - marketing_spend
+      - seasonality
+    materiality_threshold:
+      statistical_z: 2.0
+      unit_impact: 500
+    owner_persona: CEO
+    access_restriction: all_regions
+    lineage: "Sum of units sold from sales_transactions."
+
+  AOV:
+    definition: "Revenue / COUNT(DISTINCT order_id)"
+    source_tables:
+      - sales_transactions
+    grain: daily
+    drivers:
+      - price
+      - product_mix
+      - discount_depth
+    materiality_threshold:
+      statistical_z: 2.0
+      dollar_impact: 5
+    owner_persona: CEO
+    access_restriction: all_regions
+    lineage: "Calculated as Revenue divided by distinct order IDs."
+
+  Marketing_ROI:
+    definition: "(attributed_revenue - spend) / spend"
+    source_tables:
+      - sales_transactions
+      - marketing_spend
+    grain: weekly
+    drivers:
+      - spend_level
+      - channel_effectiveness
+      - conversion_rate
+    materiality_threshold:
+      statistical_z: 1.5
+      ratio_points_impact: 0.1
+    owner_persona: VP Marketing
+    access_restriction: all_regions
+    lineage: "Computed from attributed revenue from sales and marketing spend."
+
+  Churn_Rate:
+    definition: "churned_customers / active_customers"
+    source_tables:
+      - customer_events
+    grain: monthly
+    drivers:
+      - nps_score
+      - pricing_changes
+      - competitive_pressure
+      - seasonality
+    materiality_threshold:
+      statistical_z: 1.5
+      rate_points_impact: 0.02
+    owner_persona: VP Customer Success
+    access_restriction: all_regions
+    lineage: "Based on active and churned customer flags in customer_events. NOTE: This KPI will trigger freshness penalty since customer_events is deliberately stale."
+
+personas:
+  CEO:
+    role: executive
+    regions:
+      - all
+    pii_access: true
+    decision_authority:
+      - pricing
+      - budget_reallocation
+      - strategic_partnerships
+
+  Regional_Manager_West:
+    role: regional_manager
+    regions:
+      - West
+    pii_access: false
+    decision_authority:
+      - promo_calendar
+      - inventory_reorder
+      - churn_save_outreach
+
+  Regional_Manager_East:
+    role: regional_manager
+    regions:
+      - East
+    pii_access: false
+    decision_authority:
+      - promo_calendar
+      - inventory_reorder
+      - churn_save_outreach
+
+lever_catalog:
+  pricing_adjustment:
+    min_authority: VP Pricing
+  promo_calendar:
+    min_authority: Regional Manager
+  marketing_budget_reallocation:
+    min_authority: VP Marketing
+  inventory_reorder:
+    min_authority: Regional Manager
+  churn_save_outreach:
+    min_authority: Regional Manager

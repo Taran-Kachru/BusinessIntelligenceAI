@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Wealth palette ────────────────────────────────────────
+   #103438  w-dark   Deep teal — primary background
+   #566677  w-mid    Slate-blue — borders, secondary text
+   #B0BFD1  w-silver Cool silver — primary text, accents
+   ─────────────────────────────────────────────────────── */
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #103438;
+    /* Depth gradient: slightly darker in corners, faint silver radial at top */
+    background-image:
+      radial-gradient(ellipse at 0% 0%, #0c2c30 0, transparent 55%),
+      radial-gradient(ellipse at 100% 0%, rgba(176,191,209,0.05) 0, transparent 48%),
+      radial-gradient(ellipse at 60% 100%, rgba(86,102,119,0.12) 0, transparent 52%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: #B0BFD1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: rgba(176,191,209,0.18);
+    color: #fff;
+  }
+}
+
+/* ── Glass surface ── */
+.glass-panel {
+  background: rgba(16,52,56,0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(86,102,119,0.28);
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.22),
+    inset 0 1px 0 rgba(176,191,209,0.05);  /* subtle top-edge gleam */
+}
+
+/* ── Table row hover ── */
+.glass-row:hover {
+  background: rgba(86,102,119,0.10);
+  transition: all 0.25s ease;
+  transform: scale(1.004);
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+}
+
+/* ── Animations ── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.45s ease-out forwards;
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.38s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Sidebar cards stagger in */
+.sidebar-item {
+  opacity: 0;
+  animation: fadeIn 0.38s ease-out forwards;
+}
+
+/* Thin scrollbar */
+.scrollbar-thin::-webkit-scrollbar         { width: 3px; }
+.scrollbar-thin::-webkit-scrollbar-track   { background: transparent; }
+.scrollbar-thin::-webkit-scrollbar-thumb   { background: rgba(86,102,119,0.45); border-radius: 3px; }
+.scrollbar-thin::-webkit-scrollbar-thumb:hover { background: rgba(176,191,209,0.35); }

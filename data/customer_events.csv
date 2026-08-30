@@ -1,0 +1,25 @@
+month,region,active_customers,churned_customers,nps_score,nps_comment
+2026-01-01,West,9084,213,68,Great service
+2026-01-01,East,5722,153,45,
+2026-01-01,North,5465,125,56,
+2026-01-01,South,5882,159,58,
+2026-02-01,West,7543,232,62,A bit too expensive
+2026-02-01,East,5864,140,67,
+2026-02-01,North,5040,135,41,john.doe@email.com complained about delivery
+2026-02-01,South,7325,209,62,
+2026-03-01,West,5708,250,30,
+2026-03-01,East,8175,188,40,
+2026-03-01,North,6982,343,57,
+2026-03-01,South,6106,235,58,
+2026-04-01,West,9282,448,54,Contact Mike at mike.jones@company.com
+2026-04-01,East,8910,235,49,
+2026-04-01,North,9707,226,67,john.doe@email.com complained about delivery
+2026-04-01,South,7834,322,49,Sarah Smith (555-0192) said the product was great
+2026-05-01,West,9708,209,47,
+2026-05-01,East,5488,430,51,Great service
+2026-05-01,North,9948,445,52,A bit too expensive
+2026-05-01,South,8890,267,69,john.doe@email.com complained about delivery
+2026-06-01,West,6653,261,56,Sarah Smith (555-0192) said the product was great
+2026-06-01,East,9213,691,27,Contact Mike at mike.jones@company.com
+2026-06-01,North,9011,336,50,
+2026-06-01,South,9547,407,49,Sarah Smith (555-0192) said the product was great
