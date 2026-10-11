@@ -2,7 +2,6 @@
 
 > "KPI Pulse turns a KPI movement into a governed, evidence-cited, persona-aware explanation and a concrete recommended action — using deterministic statistics for every number and an LLM only for the words."
 
-Accenture Innovation Challenge 2026 — Track 3 (BusinessIntelligence.ai), Round 2.
 
 ---
 
